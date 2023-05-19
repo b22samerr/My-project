@@ -1,19 +1,27 @@
 package com.example.myproject;
 
 public class FootballTeams {
+
+    private String id;
     private String name;
     private String location;
-    private Integer size;
-    private Integer cost;
+    private int cost;
+    private int size;
 
-    @Override
-    public String toString() {
-        return "FootballTeams{" +
-                "name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", size=" + size +
-                ", cost=" + cost +
-                '}';
+    public FootballTeams(String id, String name, String location, int cost, int size) {
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.cost = cost;
+        this.size = size;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -32,19 +40,19 @@ public class FootballTeams {
         this.location = location;
     }
 
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
-    }
-
-    public Integer getCost() {
+    public int getCost() {
         return cost;
     }
 
-    public void setCost(Integer cost) {
+    public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 }

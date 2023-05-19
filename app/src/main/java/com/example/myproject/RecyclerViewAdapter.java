@@ -11,50 +11,39 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
-    private List<RecyclerViewItem> items;
-    private LayoutInflater layoutInflater;
-    private OnClickListener onClickListener;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
-    RecyclerViewAdapter(Context context, List<RecyclerViewItem> items, OnClickListener onClickListener) {
-        this.layoutInflater = LayoutInflater.from(context);
-        this.items = items;
-        this.onClickListener = onClickListener;
+import java.util.List;
+
+public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewItem> {
+    private List<FootballTeams> FootballTeams;
+    public RecyclerViewAdapter(List<FootballTeams> FootballTeams) {
+        this.FootballTeams = FootballTeams;
     }
 
-    @Override
     @NonNull
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(layoutInflater.inflate(R.layout.teamcard, parent, false));
+    @Override
+    public RecyclerViewItem onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.teamcard, parent, false);
+        return new RecyclerViewItem(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.title.setText(items.get(position).getTitle());
+    public void onBindViewHolder(@NonNull RecyclerViewItem holder, int position) {
+        holder.id.setText(FootballTeams.get(position).getId());
+        holder.name.setText(FootballTeams.get(position).getName());
+        holder.location.setText(FootballTeams.get(position).getLocation());
+        holder.cost.setText(FootballTeams.get(position).getCost());
+        holder.size.setText(String.valueOf(FootballTeams.get(position).getSize()));
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
-    }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView title;
-
-        ViewHolder(View itemView) {
-            super(itemView);
-            itemView.setOnClickListener(this);
-            title = itemView.findViewById(R.id.title);
-        }
-
-        @Override
-        public void onClick(View view) {
-            onClickListener.onClick(items.get(getAdapterPosition()));
-        }
-    }
-
-    public interface OnClickListener {
-        void onClick(RecyclerViewItem item);
+        return FootballTeams.size();
     }
 }

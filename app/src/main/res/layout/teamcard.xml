@@ -1,15 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:padding="10dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/item_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"/>
+        android:text="TextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/rubrik1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID och Namn:"
+        app:layout_constraintTop_toBottomOf="@+id/item_id"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/item_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/rubrik1"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/rubrik2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Företag: "
+        app:layout_constraintTop_toBottomOf="@+id/item_name"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/item_company"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/rubrik2"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/rubrik3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Storlek"
+        app:layout_constraintTop_toBottomOf="@+id/item_company"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/item_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/rubrik3"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/rubrik4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plats:"
+        app:layout_constraintTop_toBottomOf="@+id/item_size"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textStyle="bold|italic"/>
+
+    <TextView
+        android:id="@+id/item_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintTop_toBottomOf="@+id/rubrik4"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
