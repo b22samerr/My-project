@@ -1,7 +1,10 @@
 package com.example.myproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,26 +22,38 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements JsonTask.JsonTaskListener {
 
     private final String JSON_URL = "https://mobprog.webug.se/json-api?login=b22samer";
-    private final String JSON_FILE = "mountains.json";
+    private final String JSON_FILE = "FootballTeams.json";
 
-    private ArrayList<RecyclerViewItem> TeamList = new ArrayList<>();
+    private ArrayList<RecyclerViewItem> FootballTeams = new ArrayList<>();
     private RecyclerViewAdapter adapter;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("json_output", "hello from onCreate");
-        Log.d("onCreateTAG", "" + TeamList.size());
+        Log.d("onCreateTAG", "" + FootballTeams.size());
 
-        adapter = new RecyclerViewAdapter(this, TeamList, new RecyclerViewAdapter.OnClickListener() {
+        adapter = new RecyclerViewAdapter(this, FootballTeams, new RecyclerViewAdapter.OnClickListener() {
             @Override
             public void onClick(RecyclerViewItem item) {
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
+
         });
 
         new JsonTask(this).execute(JSON_URL);
+
+        button =  findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -54,7 +69,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
         for(FootballTeams Teams : listOfMountains){
             Log.d("json_output_loop", Teams.getName());
-            TeamList.add(new RecyclerViewItem(Teams.getName()));
+            FootballTeams.add(new RecyclerViewItem(Teams.getName()));
         }
 
 
@@ -66,5 +81,8 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
     }
+
+
+
 
 }
